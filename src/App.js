@@ -1,4 +1,5 @@
 import './App.css';
+import Counter from './components/Counter';
 import Events from './components/Events';
 import List from './components/List';
 
@@ -9,7 +10,9 @@ function App() {
 
         {/* <List /> */}
 
-        <Events />
+        {/* <Events /> */}
+
+        <Counter />
 
     </div>
   );
