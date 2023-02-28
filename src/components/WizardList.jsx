@@ -15,14 +15,35 @@ function WizardList() {
   }
 
   const addWizard = () => {
-    console.log("intentando agregar hechicero")
+
+    if (actualWizards.length === wizards.length) {
+      console.log("todos los hechiceros añadidos")
+      return;
+    }
+
+    // console.log("intentando agregar hechicero")
 
     // buscar un hechicero aleatorio
     const randomNumber = Math.random() * wizards.length
     const randomPosition = Math.floor(randomNumber)
     const randomWizard = wizards[randomPosition]
-    console.log(randomWizard)
+    // console.log(randomWizard)
     
+    let newWizardId = randomWizard.id;
+    let isWizardRepeated = false;
+    actualWizards.forEach((eachWizard) => {
+      if (newWizardId === eachWizard.id) {
+        isWizardRepeated = true
+      }
+    })
+    console.log(isWizardRepeated)
+    if (isWizardRepeated === true) {
+      console.log("se ha realizado una recursion")
+      addWizard()
+      return;
+    }
+
+
     // en una sola linea
     // const randomWizard = wizards[ Math.floor(Math.random() * wizards.length) ]
 
@@ -64,6 +85,25 @@ function WizardList() {
 
   }
 
+  const removeWizard = (elIdABorrar) => {
+    // 1. como sabemos exactamente cual elemento remover
+    console.log("intentando remover a un wizard", "el id:", elIdABorrar)
+
+    // 2. como removemos un elemento del array
+    const filteredArr = actualWizards.filter((eachElement) => {
+      if (eachElement.id === elIdABorrar) {
+        return false // no lo incluyas
+      } else {
+        return true // si incluyelo
+      }
+    })
+
+    setActualWizard( filteredArr )
+
+  }
+
+
+
   return (
     <div>
       
@@ -77,7 +117,8 @@ function WizardList() {
           <div style={cardStyles} key={eachElement.id}>
             <h3>Nombre: {eachElement.name}</h3>
             <p>Descripción: {eachElement.description}</p>
-            <button>Borrar</button>
+            {/* <button onClick={ removeWizard }>Borrar</button> */}
+            <button onClick={ () => removeWizard(eachElement.id) }>Borrar</button>
           </div>
         )
       })}
