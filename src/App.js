@@ -1,4 +1,5 @@
 import './App.css';
+import Events from './components/Events';
 import List from './components/List';
 
 function App() {
@@ -6,7 +7,9 @@ function App() {
     <div className="App">
         <h3>Aprendiendo conceptos de React</h3>
 
-        <List />
+        {/* <List /> */}
+
+        <Events />
 
     </div>
   );
